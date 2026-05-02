@@ -1,11 +1,9 @@
-
 #include "ExcelUtils.hpp"
 #include "MenuUtils.hpp"
-#include <xlnt/xlnt.hpp>
-#include <iostream>
+#include<xlnt/xlnt.hpp>
+#include<iostream>
 using namespace std;
 using namespace xlnt;
-
 void writeVectorToExcel(const string& filename, vector<Student> studentList) {
     workbook wb;
     worksheet ws = wb.active_sheet();
@@ -31,35 +29,33 @@ void writeVectorToExcel(const string& filename, vector<Student> studentList) {
         row++;
     }
     wb.save(filename);
-    cout << "Successfully Saved Data to Excel file." << endl;
+    cout<<"Successfully Saved Data to Excel file."<<endl;
 }
-
 vector<Student> readStudentFromExcel(const string& filename) {
     vector<Student> studentList;
     workbook wb;
     try { wb.load(filename); }
     catch (...) {
-        cout << "Unable to read data from file." << endl;
+        cout<<"Unable to read data from file."<<endl;
         return studentList;
     }
     worksheet ws = wb.active_sheet();
     for (auto row : ws.rows(false)) {
         if (row[0].to_string() == "ID") continue;
-        int    id          = stoi(row[0].to_string());
-        string name        = row[1].to_string();
-        string gender      = row[2].to_string();
-        string dateOfBirth = row[3].to_string();
-        string email       = row[4].to_string();
-        string contact     = row[5].to_string();
-        string course      = row[6].to_string();
-        float  score       = stof(row[7].to_string());
+        int    id = stoi(row[0].to_string());
+        string name= row[1].to_string();
+        string gender= row[2].to_string();
+        string dateOfBirth= row[3].to_string();
+        string email= row[4].to_string();
+        string contact= row[5].to_string();
+        string course= row[6].to_string();
+        float  score= stof(row[7].to_string());
         studentList.push_back(
             Student(id, name, gender, email, course, score, contact, dateOfBirth)
         );
     }
     return studentList;
 }
-
 void writeUsersToExcel(const string& filename, const vector<User>& users) {
     workbook wb;
     worksheet ws = wb.active_sheet();
@@ -75,9 +71,8 @@ void writeUsersToExcel(const string& filename, const vector<User>& users) {
         row++;
     }
     wb.save(filename);
-    cout << "User data saved." << endl;
+    cout<<"User data saved."<<endl;
 }
-
 vector<User> readUsersFromExcel(const string& filename) {
     vector<User> users;
     workbook wb;

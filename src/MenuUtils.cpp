@@ -91,17 +91,17 @@ void registerUser(vector<User>& users, const string& filename) {
     string username, password, role;
     printLabel("REGISTER NEW USER");
     do {
-        cout << "Enter username: "; cin >> username;
+        cout<<"Enter username: ";cin>>username;
         if (isUsernameExist(users, username))
-            cout << "Username already taken! Try another." << endl;
-    } while (isUsernameExist(users, username));
-    cout << "Enter password: "; cin >> password;
-    do {
-        cout << "Enter role (teacher/student): "; cin >> role;
-        if (role != "teacher" && role != "student")
-            cout << "Invalid! Enter teacher or student." << endl;
-    } while (role != "teacher" && role != "student");
+            cout<<"Username already taken! Please try another."<<endl;
+    } while(isUsernameExist(users, username));
+    cout<<"Enter password: "; cin>>password;
+    do{
+        cout<<"Enter role (teacher/student): ";cin>>role;
+        if(role != "teacher" && role != "student")
+            cout<<"Invalid! Enter teacher or student."<<endl;
+    }while(role != "teacher" && role != "student");
     users.push_back(User(username, password, role));
     writeUsersToExcel(filename, users);
-    cout << "Registered successfully! You can now login." << endl;
+    cout<<"Registered successfully! You can now login."<<endl;
 }
