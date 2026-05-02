@@ -4,7 +4,7 @@ project(M2G1StudentManagement)
 set(CMAKE_CXX_STANDARD 17)
 
 include(FetchContent)
-
+include_directories(include)
 # Fetch xlnt
 FetchContent_Declare(
   xlnt
@@ -20,9 +20,16 @@ FetchContent_Declare(
   GIT_TAG master
 )
 FetchContent_MakeAvailable(tabulate)
+set(SOURCES
+    src/main.cpp
+    src/Student.cpp
+    src/ExcelUtils.cpp
+    src/MenuUtils.cpp
+)
+
 
 # Add your main.cpp or other source files
-add_executable(M2G1StudentManagement main.cpp src/Student.cpp src/ExcelUtils.cpp src/MenuUtils.cpp)
+add_executable(M2G1StudentManagement ${SOURCES})
 # Tell the compiler where to find all the headers 
 target_include_directories(M2G1StudentManagement PRIVATE include )
 # Link libraries

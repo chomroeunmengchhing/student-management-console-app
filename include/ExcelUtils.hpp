@@ -1,11 +1,13 @@
+
 #pragma once
+#include "Student.hpp"
 #include <string>
 #include <vector>
-#include "Student.hpp"
 
-using std::string; 
 
-void writeExcel(const string &filename, std::vector<Student> &students);
-std::vector<Student> readExcelToVector(const string &filename);
-void readExcel(const string &filename);
+class User;
 
+void                 writeVectorToExcel  (const std::string& filename, std::vector<Student> studentList);
+std::vector<Student> readStudentFromExcel(const std::string& filename);
+void                 writeUsersToExcel   (const std::string& filename, const std::vector<User>& users);
+std::vector<User>    readUsersFromExcel  (const std::string& filename);
